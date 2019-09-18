@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 	//SeqList mylist;
 
 	DCListNode *p = NULL;
-	DCList mylist;
+	DCList mylist; //栈
 	DCListInit(&mylist);
 
 	DataType item;
@@ -54,10 +54,10 @@ int main(int argc, char *argv[])
 			DCListShow(&mylist);
 			break;
 		case 4:
-			//SeqListPopBack(&mylist);
+			DCListPopBack(&mylist);
 			break;
 		case 5:
-			//SeqListPopFront(&mylist);
+			DCListPopFront(&mylist);
 			break;
 		case 6:
 			printf("请输入要查询的位置:>");
@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 			printf("请输入要查询的数据:>");
 			scanf("%d", &item);
 			//index = SeqListFindByVal(&mylist, item);
-			//p = SListFindByVal(&mylist, item);
+			p = DCListFindByVal(&mylist, item);
 			if (p==NULL)
 				printf("要查询的数据%d不存在.\n", item);
 			break;
@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
 			printf("请输入要删除的数据:>");
 			scanf("%d", &item);
 			//flag = SeqListEraseByVal(&mylist, item);
-			//SListEraseByVal(&mylist, item);
+			DCListEraseByVal(&mylist, item);
 			break;
 		case 10:
 			printf("请输入要删除的位置:>");
@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
 				printf("删除失败.\n");
 			break;
 		case 11:
-			//printf("SeqList Length = %d\n", SListLength(&mylist));
+			printf("SeqList Length = %d\n", DCListLength(&mylist));
 			break;
 		case 12:
 			printf("请输入要删除的数据:>");
@@ -107,17 +107,17 @@ int main(int argc, char *argv[])
 			//SeqListRemoveAll(&mylist, item);
 			break;
 		case 13:
-			//SListReverse(&mylist);
+			DCListReverse(&mylist);
 			break;
 		case 14:
-			//SeqListSort(&mylist);
+			DCListSort(&mylist);
 			break;
 		case 15:
-			//SListClear(&mylist);
+			DCListClear(&mylist);
 			break;
 		}
 	}
 
-	//SListDestroy(&mylist);
+	DCListDestroy(&mylist);
 	return 0; 
 }
