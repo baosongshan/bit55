@@ -1,9 +1,116 @@
+#include<vld.h>
 #include"common.h"
 #include"seqlist.h"
 //#include"slist.h"
 //#include"sclist.h"
 //#include"dlist.h"
-#include"dclist.h"
+//#include"dclist.h"
+//#include"stack.h"
+#include"queue.h"
+
+int main()
+{
+	CircleQueue Q;
+	CircleQueueInit(&Q, 8);
+
+	CircleQueuePush(&Q, 1);
+	CircleQueuePush(&Q, 2);
+	CircleQueuePush(&Q, 3);
+	CircleQueuePush(&Q, 4);
+	CircleQueuePush(&Q, 5);
+	CircleQueuePush(&Q, 6);
+	CircleQueuePush(&Q, 7);
+	CircleQueuePush(&Q, 8);
+	CircleQueueShow(&Q);
+	CircleQueuePop(&Q);
+	CircleQueueShow(&Q);
+
+	CircleQueuePush(&Q, 8);
+	CircleQueueShow(&Q);
+
+	CircleQueuePop(&Q);
+	CircleQueueShow(&Q);
+
+	CircleQueuePush(&Q, 9);
+	CircleQueueShow(&Q);
+
+
+	return 0;
+}
+
+#if 0
+int main()
+{
+	ListQueue Q;
+	ListQueueInit(&Q);
+	ListQueuePush(&Q, 1);
+	ListQueuePush(&Q, 2);
+	ListQueuePush(&Q, 3);
+	ListQueuePush(&Q, 14);
+	ListQueuePush(&Q, 5);
+
+	ListQueueShow(&Q);
+
+	ListQueuePop(&Q);
+
+	ListQueueShow(&Q);
+
+	return 0;
+}
+
+
+int main()
+{
+	Queue Q;
+	QueueInit(&Q, 10);
+	QueuePush(&Q, 1);
+	QueuePush(&Q, 2);
+	QueuePush(&Q, 3);
+	QueuePush(&Q, 4);
+	QueuePush(&Q, 5);
+	QueuePush(&Q, 6);
+
+	QueueShow(&Q);
+	QueuePop(&Q);
+	QueuePop(&Q);
+	QueuePop(&Q);
+	QueueShow(&Q);
+
+
+	QueuePush(&Q, 10);
+	QueuePush(&Q, 20);
+	QueuePush(&Q, 30);
+	QueuePush(&Q, 40);
+	QueuePush(&Q, 50);
+	QueuePush(&Q, 60);
+
+	QueueShow(&Q);
+	return 0;
+}
+
+
+int main(int argc, char *argv[])
+{
+	Stack st;
+	//void StackInit(Stack *pst, size_t sz)
+	StackInit(&st, 10);
+	StackPush(&st, 1);
+	StackPush(&st, 2);
+	StackPush(&st, 3);
+	StackPush(&st, 4);
+	StackPush(&st, 5);
+
+	StackShow(&st);
+	printf("----------------\n");
+	//DataType val = StackTop(&st);
+	StackPop(&st);
+	StackPop(&st);
+
+	StackShow(&st);
+
+	StackDestroy(&st);
+	return  0;
+}
 
 
 int main(int argc, char *argv[])
@@ -121,3 +228,4 @@ int main(int argc, char *argv[])
 	DCListDestroy(&mylist);
 	return 0; 
 }
+#endif
