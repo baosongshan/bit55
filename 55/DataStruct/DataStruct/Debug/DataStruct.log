@@ -1,4 +1,4 @@
-﻿生成启动时间为 2019/9/21 12:05:22。
+﻿生成启动时间为 2019/9/21 16:41:34。
      1>项目“C:\Bit\Code\bit55\55\DataStruct\DataStruct\DataStruct.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt TestMain.c
@@ -15,29 +15,10 @@
      1>c:\bit\code\bit55\55\datastruct\datastruct\seqlist.h(219): warning C4018: “<”: 有符号/无符号不匹配
      1>c:\bit\code\bit55\55\datastruct\datastruct\seqlist.h(228): warning C4018: “<”: 有符号/无符号不匹配
      1>c:\bit\code\bit55\55\datastruct\datastruct\seqlist.h(230): warning C4018: “<”: 有符号/无符号不匹配
-     1>c:\bit\code\bit55\55\datastruct\datastruct\queue.h(57): warning C4033: “QueueFront”必须返回值
-     1>c:\bit\code\bit55\55\datastruct\datastruct\queue.h(64): warning C4018: “<”: 有符号/无符号不匹配
-     1>c:\bit\code\bit55\55\datastruct\datastruct\queue.h(197): warning C4033: “CircleQueueFront”必须返回值
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(14): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(16): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(17): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(18): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(19): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(20): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(21): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(22): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(23): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(24): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(25): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(26): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(28): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(29): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(31): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(32): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(34): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\testmain.c(35): warning C4133: “函数”: 从“CircleQueue *”到“Queue *”的类型不兼容
-     1>c:\bit\code\bit55\55\datastruct\datastruct\queue.h(60): warning C4715: “QueueFront”: 不是所有的控件路径都返回值
-     1>c:\bit\code\bit55\55\datastruct\datastruct\queue.h(200): warning C4715: “CircleQueueFront”: 不是所有的控件路径都返回值
+     1>c:\bit\code\bit55\55\datastruct\datastruct\queue.h(60): warning C4033: “QueueFront”必须返回值
+     1>c:\bit\code\bit55\55\datastruct\datastruct\bintree.h(47): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(283) : 参见“scanf”的声明
+     1>c:\bit\code\bit55\55\datastruct\datastruct\queue.h(63): warning C4715: “QueueFront”: 不是所有的控件路径都返回值
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Bit\Code\bit55\55\DataStruct\Debug\DataStruct.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Bit\Code\bit55\55\DataStruct\Debug\DataStruct.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Bit\Code\bit55\55\DataStruct\Debug\DataStruct.lib" /MACHINE:X86 Debug\TestMain.obj
          DataStruct.vcxproj -> C:\Bit\Code\bit55\55\DataStruct\Debug\DataStruct.exe
@@ -45,4 +26,4 @@
 
 生成成功。
 
-已用时间 00:00:00.46
+已用时间 00:00:00.48

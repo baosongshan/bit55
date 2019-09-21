@@ -3,6 +3,67 @@
 
 #include"common.h"
 
+struct BinTreeNode;
+#define QueueDataType  struct BinTreeNode*
+
+typedef struct Queue
+{
+	QueueDataType *base;
+	size_t    capacity;
+	size_t    front;
+	size_t    tail;
+}Queue;
+
+#define DEFAULT_QUEUE_SIZE 80
+
+BOOL QueueIsFull(Queue *q)
+{return q->tail >= q->capacity;}
+BOOL QueueIsEmpty(Queue *q)
+{return q->front == q->tail;}
+void QueueInit(Queue *q, int sz);
+void QueuePush(Queue *q, QueueDataType x);
+void QueuePop(Queue *q);
+QueueDataType QueueFront(Queue *q);
+
+void QueueShow(Queue *q);
+
+void QueueInit(Queue *q, int sz)
+{
+	q->capacity = sz > DEFAULT_QUEUE_SIZE ? sz : DEFAULT_QUEUE_SIZE;
+	q->base = (QueueDataType *)malloc(sizeof(QueueDataType)*(q->capacity));
+	assert(q->base != NULL);
+	q->front = q->tail = 0;
+}
+void QueuePush(Queue *q, QueueDataType x)
+{
+	if (QueueIsFull(q))
+	{
+		printf("队列已满, %d 不能入队.\n", x);
+		return;
+	}
+	q->base[q->tail++] = x;
+}
+void QueuePop(Queue *q)
+{
+	if (QueueIsEmpty(q))
+	{
+		printf("队列已空, 不能出队.\n");
+		return;
+	}
+	q->front++;
+}
+QueueDataType QueueFront(Queue *q)
+{
+	if (QueueIsEmpty(q))
+	{
+		printf("队列已空, 不能去对头元素.\n");
+		return;
+	}
+	return q->base[q->front];
+}
+
+
+#if 0
 typedef struct Queue
 {
 	DataType *base;
@@ -207,6 +268,7 @@ void CircleQueueShow(Queue *q)
 	}
 	printf("\n");
 }
+#endif
 
 
 #endif/*_QUEUE_H_*/

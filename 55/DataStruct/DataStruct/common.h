@@ -8,7 +8,7 @@
 
 typedef enum{FALSE, TRUE} BOOL;
 
-#define DataType int
+#define DataType char
 
 #define DEFAULT_SIZE 8
 #define INC_SIZE      3

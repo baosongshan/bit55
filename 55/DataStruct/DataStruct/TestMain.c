@@ -6,8 +6,34 @@
 //#include"dlist.h"
 //#include"dclist.h"
 //#include"stack.h"
-#include"queue.h"
+//#include"queue.h"
 
+#include"bintree.h"
+
+//ABC##DE##F##G#H##
+int main()
+{
+	BinTree bt;
+	BinTreeInit(&bt);
+	CreateBinTree(&bt);
+
+	printf("VLR : "); //A B C D E F G H
+	PreOrder(&bt);
+	printf("\n");
+	printf("LVR : "); // C B E D F A G H
+	InOrder(&bt);
+	printf("\n");
+	printf("LRV : "); // C E F D B H G A
+	PostOrder(&bt);
+	printf("\n");
+	printf("Level : "); // C E F D B H G A
+	LevelOrder(&bt);
+	printf("\n");
+
+	return 0;
+}
+
+#if 0
 int main()
 {
 	CircleQueue Q;
@@ -38,7 +64,7 @@ int main()
 	return 0;
 }
 
-#if 0
+
 int main()
 {
 	ListQueue Q;
