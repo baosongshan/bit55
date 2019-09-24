@@ -13,12 +13,21 @@
 //ABC##DE##F##G#H##
 int main()
 {
-	BinTree bt;
+	char *VLR = "ABCDEFGH";
+	char *LVR = "CBEDFAGH";
+	char *LRV = "CEFDBHGA";
+
+	char *str = "ABC##DE##F##G#H##";
+	BinTree bt, bt1;
 	BinTreeInit(&bt);
-	CreateBinTree(&bt);
+	BinTreeInit(&bt1);
+
+	//CreateBinTree(&bt);
+	CreateBinTreeByStr(&bt, str);
 
 	printf("VLR : "); //A B C D E F G H
-	PreOrder(&bt);
+	//PreOrder(&bt);
+	PreOrderNoR(&bt);
 	printf("\n");
 	printf("LVR : "); // C B E D F A G H
 	InOrder(&bt);
@@ -29,6 +38,16 @@ int main()
 	printf("Level : "); // C E F D B H G A
 	LevelOrder(&bt);
 	printf("\n");
+
+	printf("Size = %d\n", Size(&bt));
+	printf("Height = %d\n", Height(&bt));
+	BinTreeNode *p = Find(&bt, 'E');
+	BinTreeNode *pr = Parent(&bt, p);
+
+	Copy(&bt, &bt1);
+
+	bool flag = Equal(&bt, &bt1);
+
 
 	return 0;
 }

@@ -2,21 +2,25 @@
 #define _STACK_H_
 
 #include"common.h"
+
+struct BinTreeNode;
+#define StackDataType  struct BinTreeNode*
+
 typedef struct Stack
 {
-	DataType *base;
+	StackDataType *base;
 	size_t    capacity;
 	size_t    top;
 }Stack;
 
-#define DEFAULT_STACK_SIZE 8
+#define DEFAULT_STACK_SIZE 100
 
 void StackInit(Stack *pst, size_t sz);
-void StackPush(Stack *pst, DataType x);
+void StackPush(Stack *pst, StackDataType x);
 void StackPop(Stack *pst);
 void StackClear(Stack *pst);
 void StackDestroy(Stack *pst);
-DataType StackTop(Stack *pst);
+StackDataType StackTop(Stack *pst);
 void StackShow(Stack *pst);
 BOOL StackIsFull(Stack *pst)
 {return pst->top >= pst->capacity;}
@@ -26,12 +30,12 @@ BOOL StackIsEmpty(Stack *pst)
 void StackInit(Stack *pst, size_t sz)
 {
 	pst->capacity = sz > DEFAULT_STACK_SIZE ? sz : DEFAULT_STACK_SIZE;
-	pst->base = (DataType*)malloc(sizeof(DataType)*(pst->capacity));
+	pst->base = (StackDataType*)malloc(sizeof(DataType)*(pst->capacity));
 	assert(pst->base != NULL);
 	pst->top = 0;
 }
 
-void StackPush(Stack *pst, DataType x)
+void StackPush(Stack *pst, StackDataType x)
 {
 	if (StackIsFull(pst))
 	{
@@ -51,7 +55,7 @@ void StackPop(Stack *pst)
 	pst->top--;
 }
 
-DataType StackTop(Stack *pst)
+StackDataType StackTop(Stack *pst)
 {
 	if (StackIsEmpty(pst))
 	{
