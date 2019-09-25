@@ -27,6 +27,10 @@ BinTreeNode* CreateBinTree_2();
 void CreateBinTreeByStr(BinTree *pbt, char *str);
 void CreateBinTree_3(BinTreeNode **t, char *str);
 
+void CreateBinTree_VLR_LVR(BinTree *pbt, char *vlr, char *lvr, int n);
+BinTreeNode* CreateBinTree_VLR_LVR_1(char *vlr, char *lvr, int n);
+
+
 void PreOrder(BinTree *pbt);
 void PreOrder_1(BinTreeNode *t);
 void InOrder(BinTree *pbt);
@@ -48,6 +52,63 @@ void Copy(BinTree *bt1, BinTree *bt2); //bt1 ==> bt2
 void Copy_1(BinTreeNode *t1, BinTreeNode **t2);
 bool Equal(BinTree *bt1, BinTree *bt2);
 bool Equal_1(BinTreeNode *t1, BinTreeNode *t2);
+
+bool IsCBT(BinTree *pbt);
+bool IsCBT_1(BinTreeNode *t);
+
+bool IsCBT(BinTree *pbt)
+{
+	return IsCBT_1(pbt->root);
+}
+bool IsCBT_1(BinTreeNode *t)
+{
+	BinTreeNode *p;
+	Queue Q;
+	QueueInit(&Q, 100);
+	if(t == NULL)
+		return true;
+	QueuePush(&Q, t);
+	while(!QueueIsEmpty(&Q))
+	{
+		p = QueueFront(&Q);
+		QueuePop(&Q);
+		if(p != NULL)
+		{
+			QueuePush(&Q, p->leftChild);
+			QueuePush(&Q, p->rightChild);
+		}
+		else
+			break;
+	}
+
+	while(!QueueIsEmpty(&Q))
+	{
+		p = QueueFront(&Q);
+		if(p != NULL)
+			return false;
+		QueuePop(&Q);
+	}
+	return true;
+}
+
+void CreateBinTree_VLR_LVR(BinTree *pbt, char *vlr, char *lvr, int n)
+{
+	pbt->root = CreateBinTree_VLR_LVR_1(vlr, lvr, n);
+}
+BinTreeNode* CreateBinTree_VLR_LVR_1(char *vlr, char *lvr, int n)
+{
+	if(n == 0)
+		return NULL;
+	int k = 0;
+	while(vlr[0] != lvr[k])
+		k++;
+	BinTreeNode *t = (BinTreeNode*)malloc(sizeof(BinTreeNode));
+	t->data = vlr[0];
+	t->leftChild = CreateBinTree_VLR_LVR_1(vlr+1, lvr, k);
+	t->rightChild = CreateBinTree_VLR_LVR_1(vlr+k+1, lvr+k+1, n-k-1);
+	return t;
+}
+
 
 ///////////////////////////////////////////////////////////
 void PreOrderNoR(BinTree *pbt);
@@ -88,7 +149,28 @@ void InOrderNoR(BinTree *pbt)
 }
 void InOrderNoR_1(BinTreeNode *t)
 {
-	//??????????????????
+	if(t != NULL)
+	{
+		Stack st; 
+		StackInit(&st, 100);
+		do
+		{
+			while(t != NULL)
+			{
+				StackPush(&st, t);
+				t = t->leftChild;
+			}
+
+			if(!StackIsEmpty(&st))
+			{
+				t = StackTop(&st);
+				printf("%c ", t->data);
+				StackPop(&st);
+				t = t->rightChild;
+			}
+		} 
+		while(t!=NULL || !StackIsEmpty(&st));
+	}
 }
 void PostOrderNoR(BinTree *pbt)
 {
@@ -96,9 +178,33 @@ void PostOrderNoR(BinTree *pbt)
 }
 void PostOrderNoR_1(BinTreeNode *t)
 {
-	//???????????????????
-}
+	if(t != NULL)
+	{
+		BinTreeNode *top, *prev = NULL;
+		Stack st; 
+		StackInit(&st, 100);
+		do
+		{
+			while(t != NULL)
+			{
+				StackPush(&st, t);
+				t = t->leftChild;
+			}
 
+			top = StackTop(&st);
+			if(top->rightChild==NULL || top->rightChild==prev)
+			{
+				//Visit
+				printf("%c ",top->data);
+				StackPop(&st);
+				prev = top;
+			}
+			else
+				t = top->rightChild;
+
+		}while(!StackIsEmpty(&st));
+	}
+}
 
 ////////////////////////////////////////////////////////////
 void BinTreeInit(BinTree *pbt)

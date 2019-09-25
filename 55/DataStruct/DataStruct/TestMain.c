@@ -8,8 +8,31 @@
 //#include"stack.h"
 //#include"queue.h"
 
-#include"bintree.h"
+//#include"bintree.h"
 
+#include"bst.h"
+
+int main()
+{
+	int ar[] = {54,23,76,25,34,3,7,8,9,5,1,70};
+	int n = sizeof(ar) / sizeof(int);
+	BSTree bst;
+	BSTreeInit(&bst);
+
+	for(int i=0; i<n; ++i)
+	{
+		BSTreeInsert(&bst, ar[i]);
+	}
+
+	BSTNode *p = BSTreeMin(&bst);
+	p = BSTreeFind(&bst, 250);
+
+	BSTreeErase(&bst, 23);
+	return 0;
+}
+
+
+#if 0
 //ABC##DE##F##G#H##
 int main()
 {
@@ -23,17 +46,21 @@ int main()
 	BinTreeInit(&bt1);
 
 	//CreateBinTree(&bt);
-	CreateBinTreeByStr(&bt, str);
+	//CreateBinTreeByStr(&bt, str);
+	int n = strlen(LVR);
+	CreateBinTree_VLR_LVR(&bt, VLR, LVR, n);
 
 	printf("VLR : "); //A B C D E F G H
 	//PreOrder(&bt);
 	PreOrderNoR(&bt);
 	printf("\n");
 	printf("LVR : "); // C B E D F A G H
-	InOrder(&bt);
+	//InOrder(&bt);
+	InOrderNoR(&bt);
 	printf("\n");
 	printf("LRV : "); // C E F D B H G A
-	PostOrder(&bt);
+	//PostOrder(&bt);
+	PostOrderNoR(&bt);
 	printf("\n");
 	printf("Level : "); // C E F D B H G A
 	LevelOrder(&bt);
@@ -52,7 +79,7 @@ int main()
 	return 0;
 }
 
-#if 0
+
 int main()
 {
 	CircleQueue Q;
