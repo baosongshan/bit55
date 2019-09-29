@@ -10,8 +10,40 @@
 
 //#include"bintree.h"
 
-#include"bst.h"
+//#include"bst.h"
 
+#include"heap.h"
+
+int main()
+{
+	int ar[] = {27,15,19,18,28,34,65,49,25,37};
+	int n = sizeof(ar) / sizeof(int);
+	Heap hp;
+	DataType ret;
+	HeapInit(&hp, DEFAULT_HEAP_SIZE);
+
+	for(int i=0; i<n; ++i)
+	{
+		HeapPush(&hp, ar[i]);
+	}
+	HeapShow(&hp);
+	HeapTop(&hp, &ret);
+	printf("Heap Top = %d\n", ret);
+
+	//HeapPop(&hp);
+
+	HeapShow(&hp);
+	HeapTop(&hp, &ret);
+	printf("Heap Top = %d\n", ret);
+
+	HeapSort(&hp);
+
+	HeapDestroy(&hp);
+	return 0;
+}
+
+
+#if 0
 int main()
 {
 	int ar[] = {54,23,76,25,34,3,7,8,9,5,1,70};
@@ -32,7 +64,7 @@ int main()
 }
 
 
-#if 0
+
 //ABC##DE##F##G#H##
 int main()
 {

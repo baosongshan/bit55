@@ -81,6 +81,7 @@
     <ClInclude Include="common.h" />
     <ClInclude Include="dclist.h" />
     <ClInclude Include="dlist.h" />
+    <ClInclude Include="heap.h" />
     <ClInclude Include="queue.h" />
     <ClInclude Include="sclist.h" />
     <ClInclude Include="seqlist.h" />
