@@ -1,19 +1,31 @@
 #include<vld.h>
 #include"common.h"
-#include"seqlist.h"
+//#include"seqlist.h"
 //#include"slist.h"
 //#include"sclist.h"
 //#include"dlist.h"
 //#include"dclist.h"
 //#include"stack.h"
 //#include"queue.h"
-
 //#include"bintree.h"
-
 //#include"bst.h"
+//#include"heap.h"
+#include"sort.h"
 
-#include"heap.h"
 
+
+int main()
+{
+	int ar[] = {9,1,2,5,7,4,8,6,3,5};
+	int n = sizeof(ar) / sizeof(int);
+	
+	TestSort(ar, 0, n-1);
+	TestSortPerForMance();
+
+	return 0;
+}
+
+#if 0
 int main()
 {
 	int ar[] = {27,15,19,18,28,34,65,49,25,37};
@@ -43,7 +55,7 @@ int main()
 }
 
 
-#if 0
+
 int main()
 {
 	int ar[] = {54,23,76,25,34,3,7,8,9,5,1,70};

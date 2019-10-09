@@ -86,6 +86,7 @@
     <ClInclude Include="sclist.h" />
     <ClInclude Include="seqlist.h" />
     <ClInclude Include="slist.h" />
+    <ClInclude Include="sort.h" />
     <ClInclude Include="stack.h" />
   </ItemGroup>
   <ItemGroup>
