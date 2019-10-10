@@ -126,7 +126,7 @@ void TwoWayInsertSort(int *ar, int left, int right)
 	free(tmp);
 }
 
-void ShellSort(int *ar, int left, int right)
+void ShellSort(int *ar, int left, int right)//
 {
 	int gap = right-left+1;
 	while(gap > 1)
@@ -146,23 +146,91 @@ void ShellSort(int *ar, int left, int right)
 	}
 }
 
+//÷±Ω”—°‘Ò≈≈–Ú
+int GetMinIndex(int *ar, int left, int right)
+{
+	int index = left;
+	int min = ar[left];
+	for(int i=left+1; i<=right; ++i)
+	{
+		if(min > ar[i])
+		{
+			min = ar[i];
+			index = i;
+		}
+	}
+	return index;
+}
+void SelectSort(int *ar, int left, int right)
+{
+	for(int i=left; i<right; ++i)
+	{
+		int index = GetMinIndex(ar, i, right);
+		if(index != i)
+			Swap(&ar[index], &ar[i]);
+	}
+}
+
+void AdjustDown(int *ar, int n, int start)
+{
+	int i = start;
+	int j = 2*i+1;
+	while(j < n)
+	{
+		if(j+1<n && ar[j]<ar[j+1])
+			j++;
+		if(ar[i] < ar[j])
+		{
+			Swap(&ar[i], &ar[j]);
+			i = j;
+			j = 2*i+1;
+		}
+		else
+			break;
+	}
+}
+
+void HeapSort(int *ar, int left, int right)
+{
+	int n = right-left+1;
+	int cur = (n-1) / 2;
+	while(cur > left)
+	{
+		AdjustDown(ar, n, cur);
+		cur--;
+	}
+	//PrintArray(ar, left, right);
+	//Sort
+	int end = right;
+	while(end >= left)
+	{
+		Swap(&ar[left], &ar[end]);
+		AdjustDown(ar, end-left, 0);
+		end--;
+	}
+
+}
+
 void TestSort(int *ar, int left, int right)
 {
 	//InsertSort_1(ar, left, right);
 	//BinInsertSort(ar, left, right);
-	ShellSort(ar, left, right);
+	//ShellSort(ar, left, right);
 	//TwoWayInsertSort(ar, left, right);
+	//SelectSort(ar, left, right);
+	HeapSort(ar, left, right);
 	PrintArray(ar, left, right);
 }
 
 void TestSortPerForMance()
 {
-	int n = 100000;
+	int n = 10000;
 	int *a1 = (int *)malloc(sizeof(int)*n);
 	int *a2 = (int *)malloc(sizeof(int)*n);
 	int *a3 = (int *)malloc(sizeof(int)*n);
 	int *a4 = (int *)malloc(sizeof(int)*n);
 	int *a5 = (int *)malloc(sizeof(int)*n);
+	int *a6 = (int *)malloc(sizeof(int)*n);
 
 	srand(time(0));
 	for(int i=0; i<n; ++i)
@@ -172,6 +240,7 @@ void TestSortPerForMance()
 		a3[i] = a1[i];
 		a4[i] = a1[i];
 		a5[i] = a1[i];
+		a6[i] = a1[i];
 	}
 
 	size_t begin1 = clock();
@@ -199,8 +268,44 @@ void TestSortPerForMance()
 	size_t end5 = clock();
 	printf("ShellInsertSort time: %u\n", end5-begin5);
 
+	size_t begin6 = clock();
+	SelectSort(a6, 0, n-1);
+	size_t end6 = clock();
+	printf("ShellInsertSort time: %u\n", end6-begin6);
+
 	free(a1);
 }
+
+/*
+void _ShellSort(int *ar, int left, int right, int gap)
+{
+	for(int i=left+gap; i<=right; ++i)
+	{
+		if(ar[i] < ar[i-gap])
+		{
+			int tmp = ar[i];
+			int end = i-gap;
+			for(;end>=left&&tmp<ar[end];end-=gap)
+			{
+				ar[end+gap] = ar[end];
+			}
+			ar[end+gap] = tmp;
+		}
+	}
+}
+
+void MyShelloSort(int *ar, int left, int right)
+{
+	int dk[] = {5,3,2,1}; //???????
+	int n = sizeof(dk) / sizeof(int);
+
+	for(int i=0; i<n; ++i)
+	{
+		_ShellSort(ar, left, right, dk[i]);
+	}
+}
+
+*/
 
 
 #endif /*_SORT_H_*/

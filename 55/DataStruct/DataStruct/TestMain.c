@@ -13,12 +13,15 @@
 #include"sort.h"
 
 
-
 int main()
 {
-	int ar[] = {9,1,2,5,7,4,8,6,3,5};
+	int ar[] = {9, 1, 2, 5, 7, 4, 8, 6, 3, 5};
+	//int ar[] = {8, 6, 3, 5, 4};
 	int n = sizeof(ar) / sizeof(int);
 	
+	//MyShelloSort(ar, 0, n-1);
+	//PrintArray(ar, 0, n-1);
+
 	TestSort(ar, 0, n-1);
 	TestSortPerForMance();
 
