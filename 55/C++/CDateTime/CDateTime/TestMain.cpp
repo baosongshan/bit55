@@ -1,5 +1,13 @@
 #include"CDateTime.h"
 
+void main()
+{
+	CDateTime dt;
+	dt._ShowMenology(2020, 3);
+	//cout<<dt.GetWeekByYMD(2019,8,6)<<endl;
+}
+
+/*
 int main()
 {
 	CDateTime dt;
@@ -22,8 +30,12 @@ int main()
 		case 3:
 			dt.DateTimeDShow();
 			break;
+		case 4:
+			dt.ShowMenology();
+			break;
 		}
 	}
 
 	return 0;
 }
+*/

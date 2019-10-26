@@ -29,6 +29,13 @@ public:
 	void GetCurDateTime();
 	void DateTimeShow();
 	void DateTimeDShow();
+	void ShowMenology();
+protected:
+	bool IsLeap(int year);
+	int GetMDayByYM(int year, int month);
+public:
+	int GetWeekByYMD(int year, int month, int day);
+	void _ShowMenology(int year, int month);
 private:
 	Date m_date;
 	Time m_time;

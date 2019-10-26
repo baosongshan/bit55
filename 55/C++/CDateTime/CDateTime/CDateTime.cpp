@@ -71,3 +71,69 @@ void CDateTime::DateTimeDShow()
 	}
 	ShowCursor();
 }
+
+void CDateTime::ShowMenology()
+{
+	GetCurDateTime();
+	_ShowMenology(m_date.year, m_date.month);
+}
+void CDateTime::_ShowMenology(int year, int month)
+{
+	char *title[] = {"一","二","三","四","五","六","日"};
+	for(int i=0; i<7; ++i)
+		printf("%-6s", title[i]);
+	printf("\n");
+
+	int mdays = GetMDayByYM(year, month);
+	int week = GetWeekByYMD(year, month, 1);
+
+	if(week == 0)
+		week = 7;
+	for(int i=0; i<week-1; ++i)
+		printf("%-6c",' ');
+
+	for(int i=1; i<=mdays; ++i)
+	{
+		printf("%-6d", i);
+		int w = GetWeekByYMD(year, month, i);
+		if(w == 0)
+		{
+			printf("\n");
+			printf("\n");
+		}
+	}
+	printf("\n");
+}
+
+bool CDateTime::IsLeap(int year)
+{
+	if((year%4==0&&year%100) || (year%400==0))
+		return true;
+	return false;
+}
+
+int CDateTime::GetMDayByYM(int year, int month)
+{
+	                //1   2   3  4  5  6  7  8  9  10 11 12
+	int days[] = {29,31,  28, 31,30,31,30,31,31,30,31,30,31};
+	if(month == 2)
+	{
+		if(!IsLeap(year))
+			return days[0];
+	}
+	return days[month];
+}
+
+int CDateTime::GetWeekByYMD(int year, int month, int day)
+{
+	int count = 0;
+	for(int i=1; i<month; ++i)
+	{
+		count += GetMDayByYM(year, i);
+	}
+	count += day;
+
+	//蔡勒公式
+	int x = (year-1)+(year-1)/4 - (year-1)/100+(year-1)/400 + count+1;
+	return x % 7;
+}
