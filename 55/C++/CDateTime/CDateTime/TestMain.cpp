@@ -3,8 +3,12 @@
 void main()
 {
 	CDateTime dt;
-	dt._ShowMenology(2020, 3);
-	//cout<<dt.GetWeekByYMD(2019,8,6)<<endl;
+	dt.GetCurDateTime();
+	dt.DateTimeShow();
+
+	CDateTime tmp = dt.NextDateTime(100);
+	tmp.DateTimeShow();
+
 }
 
 /*

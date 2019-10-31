@@ -24,6 +24,7 @@ class CDateTime
 {
 public:
 	CDateTime();
+	CDateTime(int year, int month, int day, int hour, int minute, int second);
 	~CDateTime();
 public:
 	void GetCurDateTime();
@@ -36,6 +37,9 @@ protected:
 public:
 	int GetWeekByYMD(int year, int month, int day);
 	void _ShowMenology(int year, int month);
+public:
+	CDateTime NextDateTime(int n);
+	CDateTime PrevDateTime(int n);
 private:
 	Date m_date;
 	Time m_time;

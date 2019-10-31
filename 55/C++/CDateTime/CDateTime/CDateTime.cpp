@@ -24,7 +24,17 @@ CDateTime::CDateTime()
 	m_time.hour = 0;
 	m_time.minute = 0;
 	m_time.second = 0;
+}
 
+CDateTime::CDateTime(int year, int month, int day,int hour, int minute, int second)
+{
+	m_date.year = year;
+	m_date.month = month;
+	m_date.day = day;
+
+	m_time.hour = hour;
+	m_time.minute = minute;
+	m_time.second = second;
 }
 
 CDateTime::~CDateTime()
@@ -46,7 +56,7 @@ void CDateTime::GetCurDateTime()
 
 void CDateTime::DateTimeShow()
 {
-	GetCurDateTime();
+	//GetCurDateTime();
 	cout<<m_date.year<<"年"<<m_date.month<<"月"<<m_date.day<<"日"<<\
 		m_time.hour<<"时"<<m_time.minute<<"分"<<m_time.second<<"秒"<<endl;
 }
@@ -107,7 +117,7 @@ void CDateTime::_ShowMenology(int year, int month)
 
 bool CDateTime::IsLeap(int year)
 {
-	if((year%4==0&&year%100) || (year%400==0))
+	if((year%4==0&&year%100!=0) || (year%400==0))
 		return true;
 	return false;
 }
@@ -118,7 +128,7 @@ int CDateTime::GetMDayByYM(int year, int month)
 	int days[] = {29,31,  28, 31,30,31,30,31,31,30,31,30,31};
 	if(month == 2)
 	{
-		if(!IsLeap(year))
+		if(IsLeap(year))
 			return days[0];
 	}
 	return days[month];
@@ -134,6 +144,34 @@ int CDateTime::GetWeekByYMD(int year, int month, int day)
 	count += day;
 
 	//蔡勒公式
-	int x = (year-1)+(year-1)/4 - (year-1)/100+(year-1)/400 + count+1;
+	int x = (year-1)+(year-1)/4 - (year-1)/100+(year-1)/400 + count;
 	return x % 7;
+}
+
+CDateTime CDateTime::NextDateTime(int n)  //10
+{
+	int y = m_date.year;   //2019
+	int m = m_date.month;  //10
+	int d = m_date.day;    //29
+
+	int mday = GetMDayByYM(y, m);
+	while(d+n > mday)
+	{
+		m++;
+		if(m > 12)
+		{
+			m = 1;
+			y++;
+		}
+		n -= mday;
+		mday = GetMDayByYM(y, m);
+	}
+	d += n;
+
+	return CDateTime(y, m, d, m_time.hour, m_time.minute, m_time.second);
+}
+
+CDateTime CDateTime::PrevDateTime(int n)
+{
+	//
 }
