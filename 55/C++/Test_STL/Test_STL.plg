@@ -1,0 +1,36 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Test_STL - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\baoso\AppData\Local\Temp\RSPF8AC.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /FR"Debug/" /Fp"Debug/Test_STL.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ  /c 
+"C:\Bit\Code\bit55\55\C++\Test_STL\Test.cpp"
+]
+Creating command line "cl.exe @C:\Users\baoso\AppData\Local\Temp\RSPF8AC.tmp" 
+<h3>Output Window</h3>
+Compiling...
+Test.cpp
+Creating temporary file "C:\Users\baoso\AppData\Local\Temp\RSPF978.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/Test_STL.pdb" /debug /machine:I386 /out:"Debug/Test_STL.exe" /pdbtype:sept 
+".\Debug\Test.obj"
+]
+Creating command line "link.exe @C:\Users\baoso\AppData\Local\Temp\RSPF978.tmp"
+<h3>Output Window</h3>
+Linking...
+Creating command line "bscmake.exe /nologo /o"Debug/Test_STL.bsc"  ".\Debug\Test.sbr""
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+Test_STL.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
