@@ -6,11 +6,14 @@ typedef enum{RED=0, BLACK}Color_Type;
 
 template<typename Type>
 class RBTree;
+template<typename Type>
+class rb_iterator;
 
 template<typename Type>
 class RBTreeNode
 {
 	friend class RBTree<Type>;
+	friend class rb_iterator<Type>;
 public:
 	RBTreeNode(const Type &val = Type())
 		:data(val),left(nullptr),right(nullptr),parent(nullptr),color(RED)
@@ -25,17 +28,118 @@ private:
 	Color_Type color;
 };
 
+/////////////////////////////////////////////////////////////////
+template<typename Type>
+class rb_iterator
+{
+	typedef rb_iterator self;
+public:
+	rb_iterator(RBTreeNode<Type> *p, RBTreeNode<Type> *nil):node(p),NIL(nil)
+	{}
+public:
+	Type& operator*()
+	{
+		return node->data;
+	}
+	self& operator++()
+	{
+		increment();
+		return *this;
+	}
+	self& operator--()
+	{
+		decrement();
+		return *this;
+	}
+public:
+	bool operator==(const rb_iterator &rbit)
+	{
+		return node == rbit.node;
+	}
+	bool operator!=(const rb_iterator &rbit)
+	{
+		return node != rbit.node;
+	}
+protected:
+	void increment()
+	{
+		if(node->right != NIL)
+		{
+			node = node->right;
+			while(node->left != NIL)
+				node = node->left;
+		}
+		else
+		{
+			RBTreeNode<Type> *p = node->parent;
+			while(node == p->right)
+			{
+				node = p;
+				p = p->parent;
+			}
+			node = p;
+		}
+	}
+	void decrement()
+	{
+		if(node->left != NIL)
+		{
+			node = node->left;
+			while(node->right !=NIL)
+				node = node->right;
+		}
+		else
+		{
+			RBTreeNode<Type> *p = node->parent;
+			while(node == p->left)
+			{
+				node = p;
+				p = p->parent;
+			}
+			node = p;
+		}
+	}
+private:
+	RBTreeNode<Type> *node;
+	RBTreeNode<Type> *NIL;
+};
+/////////////////////////////////////////////////////////////////
+
 template<typename Type>
 class RBTree
 {
 public:
-	RBTree() : NIL(_Buynode())
+	typedef rb_iterator<Type> iterator;
+public:
+	RBTree() : NIL(_Buynode()), end_node(_Buynode())
 	{
 		NIL->left = NIL->right = NIL->parent = NIL;
 		NIL->color = BLACK;
+
+		end_node->left = end_node->right = end_node->parent = NIL;
+
 		root = NIL;
 	}
 public:
+	iterator begin()
+	{
+		RBTreeNode<Type> *p = root;
+		while(p!=NIL && p->left!=NIL)
+			p = p->left;
+		return iterator(p,NIL);
+	}
+	iterator end()
+	{
+		return iterator(end_node,NIL);
+	}
+public:
+	void set_endnode()
+	{
+		RBTreeNode<Type> *p = root;
+		while(p!=NIL && p->right!=NIL)
+			p = p->right;
+		p->right = end_node;
+	}
 	void  insert(const Type &x)
 	{
 		insert(root, x);
@@ -75,6 +179,9 @@ protected:
 		//2、平衡调整
 		insert_fixup(t, s);
 	}
+
+	//void erase(const Type &key);
+
 protected:
 	void insert_fixup(RBTreeNode<Type> *&t, RBTreeNode<Type> *x)
 	{
@@ -175,14 +282,24 @@ protected:
 private:
 	RBTreeNode<Type> *root;
 	RBTreeNode<Type> *NIL;
+	RBTreeNode<Type> *end_node; //结束节点
 };
 
 int main()
 {
-	vector<int> v = {10, 7, 4, 2, 8, 15 ,5, 6, 11, 13, 12};
+	vector<int> v = {10, 7, 4, 2, 80, 15 ,5, 6, 11, 13, 12};
 
 	RBTree<int> rb;
 	for(const auto &e : v)
 		rb.insert(e);
+	rb.set_endnode();
+
+	RBTree<int>::iterator it = rb.begin();
+	while(it != rb.end())
+	{
+		cout<<*it<<" ";
+		++it;
+	}
+
 	return 0;
 }
