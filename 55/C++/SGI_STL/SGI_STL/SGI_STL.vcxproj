@@ -77,6 +77,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="stl_alloc.h" />
+    <ClInclude Include="stl_construct.h" />
+    <ClInclude Include="stl_iterator.h" />
+    <ClInclude Include="stl_uninitialized.h" />
+    <ClInclude Include="stl_vector.h" />
+    <ClInclude Include="type_traits.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestSgi.cpp" />

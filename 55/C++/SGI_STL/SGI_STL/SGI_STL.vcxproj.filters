@@ -18,6 +18,21 @@
     <ClInclude Include="stl_alloc.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="stl_vector.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stl_uninitialized.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="type_traits.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stl_iterator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stl_construct.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestSgi.cpp">

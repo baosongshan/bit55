@@ -234,6 +234,7 @@ void* __default_alloc_template<threads,inst>::allocate(size_t n)
 {
 	if(n > __MAX_BYTES)
 		return malloc_alloc::allocate(n);
+
 	obj **my_free_list;
 	obj *result;
 
@@ -250,3 +251,72 @@ void* __default_alloc_template<threads,inst>::allocate(size_t n)
 	*my_free_list = result->free_list_link;
 	return result;
 }
+
+template <bool threads, int inst>
+void __default_alloc_template<threads,inst>::deallocate(void *p, size_t n)
+{
+	obj *q = (obj *)p;
+	obj ** my_free_list;
+
+	if (n > (size_t)__MAX_BYTES) 
+	{
+		malloc_alloc::deallocate(p, n);
+		return;
+	}
+	my_free_list = free_list + FREELIST_INDEX(n);
+	q->free_list_link = *my_free_list;
+	*my_free_list = q;
+}
+
+template <bool threads, int inst>
+void* __default_alloc_template<threads,inst>::reallocate(void *p, size_t old_sz, size_t new_sz)
+{
+	void * result;
+    size_t copy_sz;
+
+    if (old_sz > (size_t) __MAX_BYTES && new_sz > (size_t) __MAX_BYTES) 
+	{
+        return(realloc(p, new_sz));
+    }
+    if (ROUND_UP(old_sz) == ROUND_UP(new_sz)) 
+		return(p);
+
+    result = allocate(new_sz);
+    copy_sz = new_sz > old_sz? old_sz : new_sz;
+    memcpy(result, p, copy_sz);
+    deallocate(p, old_sz);
+    return(result);
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+
+#ifdef __USE_MALLOC
+	typedef malloc_alloc alloc;
+#else
+	typedef __default_alloc_template<0,0> alloc;
+#endif
+
+
+template<class T, class Alloc>
+class simple_alloc
+{
+public:
+	static T* allocate(size_t n)
+	{
+		return 0==n ?0 : (T*)Alloc::allocate(n * sizeof(T));
+	}
+	static T* allocate()
+	{
+		return (T*)Alloc::allocate(sizeof(T));
+	}
+
+	static void deallocate(T *p, size_t n)
+	{
+		if(0 != n)
+			Alloc::deallocate(p, n*sizeof(T));
+	}
+	static void deallocate(T *p)
+	{
+		Alloc::deallocate(p, n*sizeof(T));
+	}
+};
